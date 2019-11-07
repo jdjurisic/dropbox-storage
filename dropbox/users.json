@@ -1,1 +1,1 @@
-{"users":[{"username":"pero","password":"peric","glavniAdmin":false,"dozvolaZaSnimanje":true,"dozvolaZaBrisanje":false,"dozvolaZaPreuzimanje":false},{"username":"joca","password":"jovic","glavniAdmin":true,"dozvolaZaSnimanje":true,"dozvolaZaBrisanje":true,"dozvolaZaPreuzimanje":true}]}
+{"users":[{"username":"jovica","password":"djurisic","glavniAdmin":true,"dozvolaZaSnimanje":true,"dozvolaZaBrisanje":true,"dozvolaZaPreuzimanje":true}]}

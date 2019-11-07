@@ -136,7 +136,12 @@ public class Connection implements connectionComponent.Connection {
 
 	@Override
 	public void connectToStorage() {
-		// TODO Auto-generated method stub
+		try {
+			dropbox.listAllinDirectoryInDirectory("");
+		} catch (SearchDirectoryExceptions e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

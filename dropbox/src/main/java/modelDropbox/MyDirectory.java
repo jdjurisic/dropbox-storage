@@ -149,7 +149,9 @@ public class MyDirectory implements model.MyDirectory {
 	}
       while (true) {
           for (Metadata metadata : result.getEntries()) {
-              System.out.println(metadata.getPathLower());
+        
+                  System.out.println(metadata.getPathLower());
+              
           }
 
           if (!result.getHasMore()) {
@@ -201,7 +203,38 @@ public class MyDirectory implements model.MyDirectory {
 
 	@Override
 	public List<MyFile> listAllinDirectoryInDirectory(String path) throws SearchDirectoryExceptions {
-		// TODO Auto-generated method stub
+	     // Get files and folder metadata from Dropbox root directory
+     ListFolderResult result = null;
+	try {
+		result = client.files().listFolder(path);
+	} catch (ListFolderErrorException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (DbxException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+     while (true) {
+         for (Metadata metadata : result.getEntries()) {
+       	  if(metadata instanceof FolderMetadata) {
+                 System.out.println(metadata.getPathLower());
+             }
+         }
+
+         if (!result.getHasMore()) {
+             break;
+         }
+        
+         try {
+			result = client.files().listFolderContinue(result.getCursor());
+		} catch (ListFolderContinueErrorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DbxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+     }
 		return null;
 	}
 

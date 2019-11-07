@@ -68,12 +68,16 @@ public class Main {
     	
     	
     	connectionComponent.Connection connection = new Connection();
-    	connection.createNewStorage("/testUnosa20");
+    	//connection.createNewStorage("/testPc");
+    	connection.connectToStorage();
+    	
     	
     	MyPath myPath= connection.getMyPath();
         ExtensionList extensionList=connection.getExtension();
         UserDatabase userDatabase=connection.getUsers();
         User userLoggedin = connection.getLogin();
+        
+      
     	//connection.dropbox.listAllinDirectory("");
     	//System.out.println(connection.currentPath);
     	
