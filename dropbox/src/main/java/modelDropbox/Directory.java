@@ -1,4 +1,4 @@
-package model;
+package modelDropbox;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,8 +26,9 @@ import exceptions.directory.MoveDirectoryExceptions;
 import exceptions.directory.RenameDirectoryExceptions;
 import exceptions.directory.SearchDirectoryExceptions;
 import exceptions.directory.ZipDirectoryExceptions;
+import model.File;
 
-public class DropboxDirectory implements Directory {
+public class Directory implements model.Directory {
 	/**
 	 * A grouping of a few configuration parameters for how we should make requests to the Dropbox servers.
 	 */
@@ -50,7 +51,7 @@ public class DropboxDirectory implements Directory {
 	 *
 	 * @param accessToken sets access token read from config file.
 	 */
-	public DropboxDirectory(String accessToken) {
+	public Directory(String accessToken) {
 		this.ACCESS_TOKEN = accessToken;
 		initClient("remote-storage-software-component");
 	}

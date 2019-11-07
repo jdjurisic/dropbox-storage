@@ -8,10 +8,10 @@ import exceptions.directory.SearchDirectoryExceptions;
 import exceptions.file.UploadFileExeption;
 import dropbox.ExtensionHandler;
 import formatComponent.ExtensionList;
-import model.DropboxDirectory;
-import model.DropboxFile;
-import model.File;
+
 import model.MyPath;
+import modelDropbox.Directory;
+import modelDropbox.File;
 import usersComponent.User;
 import usersComponent.UserDatabase;
 
@@ -22,8 +22,8 @@ public class Connection implements connectionComponent.Connection {
 	private ExtensionList extensions;
 	public MyPath currentPath = new MyPath();
 	
-   	public DropboxDirectory dropbox = new DropboxDirectory(ACCESS_TOKEN);
-	public DropboxFile dropboxFile = new DropboxFile(dropbox.getClient());
+   	public Directory dropbox = new Directory(ACCESS_TOKEN);
+	public File dropboxFile = new File(dropbox.getClient());
 	
 	
 	@Override
@@ -100,9 +100,9 @@ public class Connection implements connectionComponent.Connection {
 	}
 
 	@Override
-	public int getLogin() {
+	public User getLogin() {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 
 

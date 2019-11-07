@@ -1,4 +1,4 @@
-package model;
+package modelDropbox;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,7 +22,9 @@ import exceptions.file.UploadFileExeption;
 import exceptions.file.ZipFilesExeption;
 import formatComponent.ExtensionList;
 
-public class DropboxFile implements File {
+
+
+public class File implements model.File {
 	
 	/**
 	 * Use this variable to make remote calls to the Dropbox API user endpoints.
@@ -33,7 +35,7 @@ public class DropboxFile implements File {
 	 * Dropbox file constructor
 	 * @param client contains access token
 	 */
-	public DropboxFile(DbxClientV2 client) {
+	public File(DbxClientV2 client) {
 		this.client = client;
 	}
 
@@ -59,13 +61,6 @@ public class DropboxFile implements File {
 		
 	}
 
-
-
-	@Override
-	public void uploadMultipleZip(List<File> files, String destination) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void zip(String path) throws ZipFilesExeption {
@@ -114,15 +109,27 @@ public class DropboxFile implements File {
 			throw new UploadFileExeption();
 		}
 	}
-		
-	
 
 
 	@Override
-	public void uploadMultiple(List<File> files, String pathStorage, ExtensionList extensiontList)
+	public void uploadMultiple(List<model.File> files, String pathStorage, ExtensionList extensiontList)
 			throws UploadFileExeption {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public void uploadMultipleZip(List<model.File> files, String destination) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+		
+	
+
+
+
+
+
 
 }
