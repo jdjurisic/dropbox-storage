@@ -136,12 +136,28 @@ public class Connection implements connectionComponent.Connection {
 
 	@Override
 	public void connectToStorage() {
+		Scanner scanner = new Scanner(System.in);
+		String path;
 		try {
+			System.out.println("Dostupna skladista na dropboxu:");
 			dropbox.listAllinDirectoryInDirectory("");
 		} catch (SearchDirectoryExceptions e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
+		System.out.println("\nUnesite putanju do skladista na koje zelite da se povezete: \n(ukoliko ne postoji,kreira se novo skladiste) ");
+		path = scanner.nextLine();
+		
+		try {
+			dropbox.create(path, "");
+		} catch (CreateDirectoryExceptions e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 		
 	}
 

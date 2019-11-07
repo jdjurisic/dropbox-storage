@@ -88,7 +88,9 @@ public class MyDirectory implements model.MyDirectory {
 		} catch (CreateFolderErrorException err) {
 			if (err.errorValue.isPath() && err.errorValue.getPathValue().isConflict()) {
 				System.out.println("Something already exists at the path.");
-				System.out.println(err.errorValue.getPathValue());
+				//System.out.println(err.errorValue.getPathValue());
+				
+				
 			} else {
 				System.out.print("Some other CreateFolderErrorException occurred...");
 				System.out.print(err.toString());

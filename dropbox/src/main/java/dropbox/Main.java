@@ -76,11 +76,7 @@ public class Main {
         ExtensionList extensionList=connection.getExtension();
         UserDatabase userDatabase=connection.getUsers();
         User userLoggedin = connection.getLogin();
-        
-      
-    	//connection.dropbox.listAllinDirectory("");
-    	//System.out.println(connection.currentPath);
-    	
+
    
    }
     	
