@@ -26,9 +26,10 @@ import exceptions.directory.MoveDirectoryExceptions;
 import exceptions.directory.RenameDirectoryExceptions;
 import exceptions.directory.SearchDirectoryExceptions;
 import exceptions.directory.ZipDirectoryExceptions;
-import model.File;
 
-public class Directory implements model.Directory {
+import model.MyFile;
+
+public class MyDirectory implements model.MyDirectory {
 	/**
 	 * A grouping of a few configuration parameters for how we should make requests to the Dropbox servers.
 	 */
@@ -51,7 +52,7 @@ public class Directory implements model.Directory {
 	 *
 	 * @param accessToken sets access token read from config file.
 	 */
-	public Directory(String accessToken) {
+	public MyDirectory(String accessToken) {
 		this.ACCESS_TOKEN = accessToken;
 		initClient("remote-storage-software-component");
 	}
@@ -134,7 +135,7 @@ public class Directory implements model.Directory {
 	}
 
 	@Override
-	public List<File> listAllinDirectory(String path) throws SearchDirectoryExceptions {
+	public List<MyFile> listAllinDirectory(String path) throws SearchDirectoryExceptions {
 	     // Get files and folder metadata from Dropbox root directory
       ListFolderResult result = null;
 	try {
@@ -168,41 +169,6 @@ public class Directory implements model.Directory {
 		return null;
 	}
 
-	@Override
-	public List<File> listAllinDirectoryInDirectory(String path) throws SearchDirectoryExceptions {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<File> listAllFileinDirectory(String path) throws SearchDirectoryExceptions {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<File> listAllinDirectoryAndSubdirectory(String path) throws SearchDirectoryExceptions {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<File> listAllinDirectoryWithExtension(String path, String extension) throws SearchDirectoryExceptions {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<File> listAllinDirectoryWithMetadata(String path) throws SearchDirectoryExceptions {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<File> listAllinDirectoryWithoutMetadata(String path) throws SearchDirectoryExceptions {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void download(String src, String dest) {
@@ -222,15 +188,54 @@ public class Directory implements model.Directory {
 	}
 
 	@Override
-	public void uploadMultiple(List<File> directories, String dest, String name) {
+	public void uploadMultiple(List<MyFile> directories, String dest, String name) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void uploadMultipleZip(List<File> directories, String dest, String name) {
+	public void uploadMultipleZip(List<MyFile> directories, String dest, String name) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<MyFile> listAllinDirectoryInDirectory(String path) throws SearchDirectoryExceptions {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MyFile> listAllFileinDirectory(String path) throws SearchDirectoryExceptions {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MyFile> listAllinDirectoryAndSubdirectory(String path) throws SearchDirectoryExceptions {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MyFile> listAllinDirectoryWithExtension(String path, String extension)
+			throws SearchDirectoryExceptions {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MyFile> listAllinDirectoryWithMetadata(String path) throws SearchDirectoryExceptions {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MyFile> listAllinDirectoryWithoutMetadata(String path) throws SearchDirectoryExceptions {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }

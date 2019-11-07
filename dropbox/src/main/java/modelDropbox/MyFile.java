@@ -24,7 +24,7 @@ import formatComponent.ExtensionList;
 
 
 
-public class File implements model.File {
+public class MyFile implements model.MyFile {
 	
 	/**
 	 * Use this variable to make remote calls to the Dropbox API user endpoints.
@@ -35,7 +35,7 @@ public class File implements model.File {
 	 * Dropbox file constructor
 	 * @param client contains access token
 	 */
-	public File(DbxClientV2 client) {
+	public MyFile(DbxClientV2 client) {
 		this.client = client;
 	}
 
@@ -112,7 +112,7 @@ public class File implements model.File {
 
 
 	@Override
-	public void uploadMultiple(List<model.File> files, String pathStorage, ExtensionList extensiontList)
+	public void uploadMultiple(List<model.MyFile> files, String pathStorage, ExtensionList extensiontList)
 			throws UploadFileExeption {
 		// TODO Auto-generated method stub
 		
@@ -120,11 +120,15 @@ public class File implements model.File {
 
 
 	@Override
-	public void uploadMultipleZip(List<model.File> files, String destination) throws Exception {
+	public void uploadMultipleZip(List<model.MyFile> files, String destination) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
-		
+
+
+
+
+
 	
 
 

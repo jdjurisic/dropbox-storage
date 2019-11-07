@@ -10,8 +10,8 @@ import dropbox.ExtensionHandler;
 import formatComponent.ExtensionList;
 
 import model.MyPath;
-import modelDropbox.Directory;
-import modelDropbox.File;
+import modelDropbox.MyDirectory;
+import modelDropbox.MyFile;
 import usersComponent.User;
 import usersComponent.UserDatabase;
 
@@ -22,8 +22,8 @@ public class Connection implements connectionComponent.Connection {
 	private ExtensionList extensions;
 	public MyPath currentPath = new MyPath();
 	
-   	public Directory dropbox = new Directory(ACCESS_TOKEN);
-	public File dropboxFile = new File(dropbox.getClient());
+   	public MyDirectory dropbox = new MyDirectory(ACCESS_TOKEN);
+	public MyFile dropboxFile = new MyFile(dropbox.getClient());
 	
 	
 	@Override

@@ -1,8 +1,8 @@
 package dropbox;
 
 import model.MetaCreator;
-import modelDropbox.Directory;
-import modelDropbox.File;
+import modelDropbox.MyDirectory;
+import modelDropbox.MyFile;
 
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
@@ -63,7 +63,7 @@ public class Main {
     	//dropboxFile.delete("/test");
     	
     	connectionComponent.Connection connection = new Connection();
-    	connection.createNewStorage("/tesddsaaaa");
+    	connection.createNewStorage("/tesddsaaakldsadjlsjda");
     	//connection.dropbox.listAllinDirectory("");
     	//System.out.println(connection.currentPath);
     	
