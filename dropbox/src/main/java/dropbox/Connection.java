@@ -213,12 +213,8 @@ public class Connection implements connectionComponent.Connection {
 				e.printStackTrace();
 			}
 		}else {
-			try {
-				dropbox.create(path, "");
-			} catch (CreateDirectoryExceptions e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			createNewStorage(path);
+			return;
 		}
 		
 		HandleUsers handlerUsr = new HandleUsers();
@@ -236,7 +232,7 @@ public class Connection implements connectionComponent.Connection {
 		
 		currentPath.setPath(path);
 		
-		// vlada login
+		 //vlada login
 		Scanner scr = new Scanner(System.in);
 		this.userLoggedin = null;
 		//if(scr.hasNext())
