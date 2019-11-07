@@ -1,8 +1,10 @@
 package modelDropbox;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import com.dropbox.core.DbxException;
@@ -51,8 +53,20 @@ public class MyFile implements model.MyFile {
 
 	@Override
 	public void download(String pathStorage, String pathDesktop) throws DownloadFileExeption {
-		// TODO Auto-generated method stub
-		
+		try {
+			OutputStream downloadFile = new FileOutputStream(pathDesktop);
+
+			try {
+				FileMetadata metadata = client.files()
+						.downloadBuilder(pathStorage)
+						.download(downloadFile);
+			} finally {
+				downloadFile.close();
+			}
+		} catch (DbxException | IOException e) {
+			System.out.println("Unable to download file to local system\n Error: " + e);
+			throw new DownloadFileExeption();
+		}
 	}
 
 	@Override

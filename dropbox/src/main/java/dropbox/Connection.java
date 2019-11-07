@@ -1,10 +1,19 @@
 package dropbox;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.dropbox.core.DbxException;
+import com.dropbox.core.v2.files.FolderMetadata;
+import com.dropbox.core.v2.files.ListFolderContinueErrorException;
+import com.dropbox.core.v2.files.ListFolderErrorException;
+import com.dropbox.core.v2.files.ListFolderResult;
+import com.dropbox.core.v2.files.Metadata;
+
 import exceptions.directory.CreateDirectoryExceptions;
 import exceptions.directory.SearchDirectoryExceptions;
+import exceptions.file.DownloadFileExeption;
 import exceptions.file.UploadFileExeption;
 import dropbox.ExtensionHandler;
 import formatComponent.ExtensionList;
@@ -22,9 +31,46 @@ public class Connection implements connectionComponent.Connection {
 	private ExtensionList extensions;
 	public MyPath currentPath = new MyPath();
 	
-   	public MyDirectory dropbox = new MyDirectory(ACCESS_TOKEN);
+   	public MyDirectory dropbox = new MyDirectory();
 	public MyFile dropboxFile = new MyFile(dropbox.getClient());
 	
+	
+	public ArrayList<String> storageList(String path){
+		ArrayList<String> listaStorage = new ArrayList<>();
+		 ListFolderResult result = null;
+			try {
+				result = dropbox.getClient().files().listFolder(path);
+			} catch (ListFolderErrorException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (DbxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		     while (true) {
+		         for (Metadata metadata : result.getEntries()) {
+		       	  if(metadata instanceof FolderMetadata) {
+		                 System.out.println(metadata.getPathLower());
+		                 listaStorage.add(metadata.getPathLower());
+		             }
+		         }
+
+		         if (!result.getHasMore()) {
+		             break;
+		         }
+		        
+		         try {
+					result = dropbox.getClient().files().listFolderContinue(result.getCursor());
+				} catch (ListFolderContinueErrorException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (DbxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		     }
+		return listaStorage;
+	}
 	
 	@Override
 	public void createNewStorage(String path) {
@@ -137,26 +183,55 @@ public class Connection implements connectionComponent.Connection {
 	@Override
 	public void connectToStorage() {
 		Scanner scanner = new Scanner(System.in);
-		String path;
-		try {
-			System.out.println("Dostupna skladista na dropboxu:");
-			dropbox.listAllinDirectoryInDirectory("");
-		} catch (SearchDirectoryExceptions e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
+		String path="";
+//		try {
+//			System.out.println("Dostupna skladista na dropboxu:");
+//			//dropbox.listAllinDirectoryInDirectory("");
+//		} catch (SearchDirectoryExceptions e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
+		
+		
+		
+
+		
+		ArrayList<String> lista = storageList(path);
+		//System.out.println(lista.toString());
 		System.out.println("\nUnesite putanju do skladista na koje zelite da se povezete: \n(ukoliko ne postoji,kreira se novo skladiste) ");
 		path = scanner.nextLine();
 		
-		try {
-			dropbox.create(path, "");
-		} catch (CreateDirectoryExceptions e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(lista.contains(path)) {
+			try {
+				dropboxFile.download(path+"/users.json", "users.json");
+				dropboxFile.download(path+"/extensions.json", "extensions.json");
+			} catch (DownloadFileExeption e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+			try {
+				dropbox.create(path, "");
+			} catch (CreateDirectoryExceptions e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
+		HandleUsers handlerUsr = new HandleUsers();
+		users = handlerUsr.readFromUserDatabase("users.json");
 		
+		ExtensionHandler handleExt = new ExtensionHandler();
+		extensions = handleExt.readExtensions("extensions.json");
+		
+		System.out.println(users.getUsers());
+		if(extensions != null) {
+			System.out.println(extensions.getExtensionList());
+		}else {
+			System.out.println("Nema ogranicenja za ekstenzije");
+		}
 		
 		
 	}

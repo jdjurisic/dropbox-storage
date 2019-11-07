@@ -7,6 +7,8 @@ import modelDropbox.MyFile;
 import usersComponent.User;
 import usersComponent.UserDatabase;
 
+import java.io.File;
+
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
@@ -68,9 +70,13 @@ public class Main {
     	
     	
     	connectionComponent.Connection connection = new Connection();
-    	//connection.createNewStorage("/testPc");
+    	//connection.createNewStorage("/testPcNOVI111111");
     	connection.connectToStorage();
     	
+    	//MyDirectory dir = new MyDirectory();
+    
+//    	dir.create("/bbc", "");
+//    	dir.listAllinDirectoryInDirectory("");
     	
     	MyPath myPath= connection.getMyPath();
         ExtensionList extensionList=connection.getExtension();

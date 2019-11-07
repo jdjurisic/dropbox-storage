@@ -2,6 +2,7 @@ package modelDropbox;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.dropbox.core.DbxDownloader;
@@ -30,6 +31,7 @@ import exceptions.directory.ZipDirectoryExceptions;
 import model.MyFile;
 
 public class MyDirectory implements model.MyDirectory {
+	private static final String ACCESS_TOKEN = "8AcMbJiKViAAAAAAAAAADUXBL3xJ67ZwtLJa3NBEJRVooHCeoIlAWbXH1bsf6QZq";
 	/**
 	 * A grouping of a few configuration parameters for how we should make requests to the Dropbox servers.
 	 */
@@ -45,15 +47,14 @@ public class MyDirectory implements model.MyDirectory {
 	/**
 	 * Token used for establishing connection with app's directory in dropbox.
 	 */
-	private String ACCESS_TOKEN;
+	
 
 	/**
 	 * Dropbox directory constructor.
 	 *
 	 * @param accessToken sets access token read from config file.
 	 */
-	public MyDirectory(String accessToken) {
-		this.ACCESS_TOKEN = accessToken;
+	public MyDirectory() {
 		initClient("remote-storage-software-component");
 	}
 
@@ -89,6 +90,7 @@ public class MyDirectory implements model.MyDirectory {
 			if (err.errorValue.isPath() && err.errorValue.getPathValue().isConflict()) {
 				System.out.println("Something already exists at the path.");
 				//System.out.println(err.errorValue.getPathValue());
+				
 				
 				
 			} else {
@@ -205,7 +207,7 @@ public class MyDirectory implements model.MyDirectory {
 
 	@Override
 	public List<MyFile> listAllinDirectoryInDirectory(String path) throws SearchDirectoryExceptions {
-	     // Get files and folder metadata from Dropbox root directory
+		// Get files and folder metadata from Dropbox root directory
      ListFolderResult result = null;
 	try {
 		result = client.files().listFolder(path);
@@ -220,6 +222,7 @@ public class MyDirectory implements model.MyDirectory {
          for (Metadata metadata : result.getEntries()) {
        	  if(metadata instanceof FolderMetadata) {
                  System.out.println(metadata.getPathLower());
+                 
              }
          }
 

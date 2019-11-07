@@ -34,7 +34,7 @@ public class ExtensionHandler implements formatComponent.ExtensionHandler {
 	@Override
 	public ExtensionList readExtensions(String path) {
 		Gson gson = new Gson();
-		ExtensionList formati=null;
+		ExtensionList formati = null;
 		
 		try {
 			formati = gson.fromJson(new FileReader(path),ExtensionList.class);
