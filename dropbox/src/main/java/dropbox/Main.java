@@ -62,7 +62,9 @@ public class Main {
     	//dropboxFile.delete("/test");
     	
     	Connection connection = new Connection();
-    	connection.createNewStorage("/vladinStorage4");
+    	connection.createNewStorage("/tesdds");
+    	connection.dropbox.listAllinDirectory("");
+    	//System.out.println(connection.currentPath);
     	
    
    }

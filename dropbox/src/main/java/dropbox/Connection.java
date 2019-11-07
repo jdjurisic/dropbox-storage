@@ -1,13 +1,16 @@
 package dropbox;
 
+import java.util.List;
 import java.util.Scanner;
 
 import exceptions.directory.CreateDirectoryExceptions;
+import exceptions.directory.SearchDirectoryExceptions;
 import exceptions.file.UploadFileExeption;
-import formatComponent.ExtensionHandler;
-import formatComponent.ExtensiontList;
+import dropbox.ExtensionHandler;
+import formatComponent.ExtensionList;
 import model.DropboxDirectory;
 import model.DropboxFile;
+import model.File;
 import model.MyPath;
 import usersComponent.User;
 import usersComponent.UserDatabase;
@@ -16,10 +19,11 @@ public class Connection implements connectionComponent.Connection {
 	private static final String ACCESS_TOKEN = "8AcMbJiKViAAAAAAAAAADUXBL3xJ67ZwtLJa3NBEJRVooHCeoIlAWbXH1bsf6QZq";
 	
 	private UserDatabase users;
-	private ExtensiontList extensions;
+	private ExtensionList extensions;
+	public MyPath currentPath = new MyPath();
 	
-   	private DropboxDirectory dropbox = new DropboxDirectory(ACCESS_TOKEN);
-	private DropboxFile dropboxFile = new DropboxFile(dropbox.getClient());
+   	public DropboxDirectory dropbox = new DropboxDirectory(ACCESS_TOKEN);
+	public DropboxFile dropboxFile = new DropboxFile(dropbox.getClient());
 	
 	
 	@Override
@@ -49,7 +53,7 @@ public class Connection implements connectionComponent.Connection {
 		handler.saveUsers("", users);
 		
 		try {
-			dropboxFile.upload("users.json", path+"/users.json");
+			dropboxFile.upload("users.json", path+"/users.json",null);
 		} catch (UploadFileExeption e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,21 +61,25 @@ public class Connection implements connectionComponent.Connection {
 		
 		
 		// napravi json sa ekstenzijama
+		ExtensionHandler ext = new ExtensionHandler();
+		ext.createNewExtensionsList(path);
+		
+		try {
+			dropboxFile.upload("extensions.json", path+"/extensions.json",null);
+		} catch (UploadFileExeption e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		scanner.close();
+		currentPath.setPath(path);
 		System.out.println("Uspesno kreiran");
 	}
 
 
-	@Override
-	public void connectToStorage() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void disconnectFromStorage() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public MyPath getMyPath() {
@@ -86,7 +94,7 @@ public class Connection implements connectionComponent.Connection {
 	}
 
 	@Override
-	public ExtensionHandler getExtension() {
+	public ExtensionList getExtension() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -96,6 +104,26 @@ public class Connection implements connectionComponent.Connection {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+
+	@Override
+	public void connectToStorage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void disconnectFromStorage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
 	
 	
 

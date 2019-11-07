@@ -20,7 +20,7 @@ import exceptions.file.RenameFileExeption;
 import exceptions.file.SelectFileExeption;
 import exceptions.file.UploadFileExeption;
 import exceptions.file.ZipFilesExeption;
-import formatComponent.ExtensiontList;
+import formatComponent.ExtensionList;
 
 public class DropboxFile implements File {
 	
@@ -54,27 +54,12 @@ public class DropboxFile implements File {
 	}
 
 	@Override
-	public void upload(String src, String dest) throws UploadFileExeption {
-		try {
-			InputStream in = new FileInputStream(src);
-			FileMetadata metadata = client.files().uploadBuilder(dest).uploadAndFinish(in);
-		} catch (IOException | DbxException ioe) {
-			ioe.printStackTrace();
-			throw new UploadFileExeption();
-		}
-	}
-
-	@Override
 	public void selectMutlipleFile(List<String> path) throws SelectFileExeption {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void uploadMultiple(List<File> files, String pathStorage) throws UploadFileExeption {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void uploadMultipleZip(List<File> files, String destination) throws Exception {
@@ -107,13 +92,35 @@ public class DropboxFile implements File {
 	}
 
 	@Override
-	public void create(String name, String path, ExtensiontList extensiontList) throws CreateFileException {
+	public void create(String name, String path, ExtensionList extensiontList) throws CreateFileException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void createWithMetadata(String name, String path, ExtensiontList extensiontList) throws CreateFileException {
+	public void createWithMetadata(String name, String path, ExtensionList extensiontList) throws CreateFileException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void upload(String pathDesktop, String pathStorage, ExtensionList extensiontList) throws UploadFileExeption {
+		try {
+			InputStream in = new FileInputStream(pathDesktop);
+			FileMetadata metadata = client.files().uploadBuilder(pathStorage).uploadAndFinish(in);
+		} catch (IOException | DbxException ioe) {
+			ioe.printStackTrace();
+			throw new UploadFileExeption();
+		}
+	}
+		
+	
+
+
+	@Override
+	public void uploadMultiple(List<File> files, String pathStorage, ExtensionList extensiontList)
+			throws UploadFileExeption {
 		// TODO Auto-generated method stub
 		
 	}
