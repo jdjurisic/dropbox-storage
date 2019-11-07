@@ -30,6 +30,7 @@ public class Connection implements connectionComponent.Connection {
 	private UserDatabase users;
 	private ExtensionList extensions;
 	public MyPath currentPath = new MyPath();
+	private User userLoggedin;
 	
    	public MyDirectory dropbox = new MyDirectory();
 	public MyFile dropboxFile = new MyFile(dropbox.getClient());
@@ -162,20 +163,20 @@ public class Connection implements connectionComponent.Connection {
 
 	@Override
 	public UserDatabase getUsers() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return users;
 	}
 
 	@Override
 	public ExtensionList getExtension() {
 		// TODO Auto-generated method stub
-		return null;
+		return extensions;
 	}
 
 	@Override
 	public User getLogin() {
 		// TODO Auto-generated method stub
-		return null;
+		return userLoggedin;
 	}
 
 
@@ -233,7 +234,37 @@ public class Connection implements connectionComponent.Connection {
 			System.out.println("Nema ogranicenja za ekstenzije");
 		}
 		
+		currentPath.setPath(path);
 		
+		// vlada login
+		Scanner scr = new Scanner(System.in);
+		this.userLoggedin = null;
+		//if(scr.hasNext())
+			//scr.next();
+		System.out.print("Login na skladiste\n");
+		while(true) {
+			System.out.print("Unesite username:");
+			String username = scr.nextLine();
+			
+			System.out.print("Unesi password :");
+			String password = scr.nextLine();
+			
+			for (int j = 0; j < this.users.getUsers().size(); j++) {
+				if (users.getUsers().get(j).getUsername().equals(username)) {
+					if (users.getUsers().get(j).getPassword().equals(password)) {
+						userLoggedin = users.getUsers().get(j);
+					}
+					
+				}
+			}
+			//System.out.println(username);
+			if(this.userLoggedin == null) {
+				System.out.println("Korisnik nije pronadjen, pokusajte ponovo");
+			}else {
+				System.out.println("Korisnik "+ this.userLoggedin.getUsername() +" uspesno ulogovan.");
+				break;
+			}
+		}
 	}
 
 
