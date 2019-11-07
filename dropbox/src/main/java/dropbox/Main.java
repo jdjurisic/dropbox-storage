@@ -1,8 +1,11 @@
 package dropbox;
 
 import model.MetaCreator;
+import model.MyPath;
 import modelDropbox.MyDirectory;
 import modelDropbox.MyFile;
+import usersComponent.User;
+import usersComponent.UserDatabase;
 
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
@@ -16,6 +19,7 @@ import exceptions.directory.DeleteDirectoryExceptions;
 import exceptions.directory.SearchDirectoryExceptions;
 import exceptions.file.DeleteFileExeption;
 import exceptions.file.UploadFileExeption;
+import formatComponent.ExtensionList;
 
 public class Main {
     private static final String ACCESS_TOKEN = "8AcMbJiKViAAAAAAAAAADUXBL3xJ67ZwtLJa3NBEJRVooHCeoIlAWbXH1bsf6QZq";
@@ -62,8 +66,14 @@ public class Main {
     	//dropbox.listAllinDirectory("/test");
     	//dropboxFile.delete("/test");
     	
+    	
     	connectionComponent.Connection connection = new Connection();
-    	connection.createNewStorage("/tesddsaaakldsadjlsjda");
+    	connection.createNewStorage("/testUnosa20");
+    	
+    	MyPath myPath= connection.getMyPath();
+        ExtensionList extensionList=connection.getExtension();
+        UserDatabase userDatabase=connection.getUsers();
+        User userLoggedin = connection.getLogin();
     	//connection.dropbox.listAllinDirectory("");
     	//System.out.println(connection.currentPath);
     	

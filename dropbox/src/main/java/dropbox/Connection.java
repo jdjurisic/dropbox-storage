@@ -45,6 +45,33 @@ public class Connection implements connectionComponent.Connection {
 		System.out.println("Unesite password glavnog admina :");
 		String password = scanner.nextLine();
 		
+		
+		// dodavanje novih korisnika
+//		while(true) {
+//			String noviUsername = scanner.nextLine();
+//			
+//			String novaSifra = scanner.nextLine();
+//			Boolean snimanje,brisanje,preuzimanje;
+//			
+//			snimanje = scanner.nextBoolean();
+//			brisanje = scanner.nextBoolean();
+//			preuzimanje = scanner.nextBoolean();
+//			
+//			User noviKorisnik = new User(noviUsername,novaSifra,false,snimanje,brisanje,preuzimanje);
+//			users.getUsers().add(noviKorisnik);
+//			
+//			
+//			System.out.println("Da li zelite da unesete jos korisnika?");
+//			Boolean daNe = scanner.nextBoolean();
+//			if(!daNe) {
+//				break;
+//			}
+//			if(scanner.hasNext()) {
+//				
+//				System.out.println("A"+scanner.nextLine()+"B");
+//			}
+//		}
+		
 		korisnik = new User(username,password,true,true,true,true);
 		users.getUsers().add(korisnik);
 		
