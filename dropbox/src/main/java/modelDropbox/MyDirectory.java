@@ -69,7 +69,7 @@ public class MyDirectory implements model.MyDirectory {
 
 		try {
 			FullAccount account = this.client.users().getCurrentAccount();
-			System.out.println("Account: " + account.getName().getDisplayName());
+			//System.out.println("Account: " + account.getName().getDisplayName());
 		} catch (DbxException dbxe) {
 			dbxe.printStackTrace();
 		}

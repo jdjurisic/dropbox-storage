@@ -33,7 +33,7 @@ public class Connection implements connectionComponent.Connection {
 	private User userLoggedin;
 	
    	public MyDirectory dropbox = new MyDirectory();
-	public MyFile dropboxFile = new MyFile(dropbox.getClient());
+	public MyFile dropboxFile = new MyFile();
 	
 	
 	public ArrayList<String> storageList(String path){
@@ -76,8 +76,10 @@ public class Connection implements connectionComponent.Connection {
 	@Override
 	public void createNewStorage(String path) {
 		// napravi folder
+		currentPath.setPath(path);
 		try {
 			dropbox.create(path,"");
+			
 		} catch (CreateDirectoryExceptions e) {
 			e.printStackTrace();
 		}
@@ -120,6 +122,7 @@ public class Connection implements connectionComponent.Connection {
 //		}
 		
 		korisnik = new User(username,password,true,true,true,true);
+		this.userLoggedin = korisnik;
 		users.getUsers().add(korisnik);
 		
 		// napravi json sa korisnicima
@@ -158,7 +161,7 @@ public class Connection implements connectionComponent.Connection {
 	@Override
 	public MyPath getMyPath() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.currentPath;
 	}
 
 	@Override
@@ -267,7 +270,18 @@ public class Connection implements connectionComponent.Connection {
 
 	@Override
 	public void disconnectFromStorage() {
-		// TODO Auto-generated method stub
+		try {
+			dropboxFile.upload("users.json",getMyPath().getPath()+"/users.json",null);
+		} catch (UploadFileExeption e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			dropboxFile.upload("users.json",getMyPath().getPath()+"/users.json",null);
+		} catch (UploadFileExeption e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

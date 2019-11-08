@@ -8,11 +8,13 @@ import java.io.OutputStream;
 import java.util.List;
 
 import com.dropbox.core.DbxException;
+import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.DeleteResult;
 import com.dropbox.core.v2.files.FileMetadata;
 import com.dropbox.core.v2.files.Metadata;
 import com.dropbox.core.v2.files.UploadUploader;
+import com.dropbox.core.v2.users.FullAccount;
 
 import exceptions.file.CreateFileException;
 import exceptions.file.DeleteFileExeption;
@@ -27,18 +29,47 @@ import formatComponent.ExtensionList;
 
 
 public class MyFile implements model.MyFile {
-	
+	private static final String ACCESS_TOKEN = "8AcMbJiKViAAAAAAAAAADUXBL3xJ67ZwtLJa3NBEJRVooHCeoIlAWbXH1bsf6QZq";
+	/**
+	 * A grouping of a few configuration parameters for how we should make requests to the Dropbox servers.
+	 */
+	private DbxRequestConfig config = null;
 	/**
 	 * Use this variable to make remote calls to the Dropbox API user endpoints.
 	 */
 	private DbxClientV2 client = null;
+	/**
+	 * Detailed information about the current user's account.
+	 */
+	private FullAccount account = null;
+	/**
+	 * Use this variable to make remote calls to the Dropbox API user endpoints.
+	 */
+
 
 	/**
 	 * Dropbox file constructor
 	 * @param client contains access token
 	 */
-	public MyFile(DbxClientV2 client) {
-		this.client = client;
+	public MyFile() {
+		initClient("remote-storage-software-component");
+	}
+
+
+	public void initClient(String clientID) {
+		this.config = new DbxRequestConfig(clientID);
+		this.client = new DbxClientV2(config, ACCESS_TOKEN);
+
+		try {
+			FullAccount account = this.client.users().getCurrentAccount();
+			//System.out.println("Account: " + account.getName().getDisplayName());
+		} catch (DbxException dbxe) {
+			dbxe.printStackTrace();
+		}
+	}
+
+	public DbxClientV2 getClient() {
+		return client;
 	}
 
 
