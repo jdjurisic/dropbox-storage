@@ -1,10 +1,12 @@
 package modelS;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.List;
 
 import com.dropbox.core.DbxException;
@@ -129,7 +131,37 @@ public class MyFile implements model.MyFile {
 
 	@Override
 	public void create(String name, String path, ExtensionList extensiontList) throws CreateFileException {
-		// TODO Auto-generated method stub
+		if (name.equals("") || (name.indexOf('.') == -1)) {
+			System.out.println("Ime fajla nije dobro!!!");
+			return;
+		}
+
+		String extension = name.substring(name.indexOf('.') + 1);// ovo da se ukloni tacka
+
+		//System.out.println(extension);
+		for (int i = 0; i < extensiontList.getExtensionList().size(); i++) {
+			if (extensiontList.getExtensionList().get(i).equals(extension)) {
+				System.out.println("Fajl sa ovom ekstenzijom se ne moze napraviti");
+				return;
+			}
+		}
+		File f = new File(name);
+		try {
+			f.createNewFile();
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
+		
+		try {
+			this.upload(name, path, null);
+		} catch (UploadFileExeption e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	
 		
 	}
 
