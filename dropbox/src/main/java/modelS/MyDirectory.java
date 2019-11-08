@@ -32,7 +32,7 @@ import exceptions.directory.ZipDirectoryExceptions;
 import model.MyFile;
 
 public class MyDirectory implements model.MyDirectory {
-	private static final String ACCESS_TOKEN = "8AcMbJiKViAAAAAAAAAADUXBL3xJ67ZwtLJa3NBEJRVooHCeoIlAWbXH1bsf6QZq";
+	private static final String ACCESS_TOKEN = "8AcMbJiKViAAAAAAAAAAHP2ZlQkD9e5Wgsiv1rBVoM7anm9RbEXR-Do0W8YI9V5E";
 	/**
 	 * A grouping of a few configuration parameters for how we should make requests to the Dropbox servers.
 	 */

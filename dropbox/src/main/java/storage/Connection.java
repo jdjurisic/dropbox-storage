@@ -26,7 +26,7 @@ import usersComponent.User;
 import usersComponent.UserDatabase;
 
 public class Connection implements connectionComponent.Connection {
-	private static final String ACCESS_TOKEN = "8AcMbJiKViAAAAAAAAAADUXBL3xJ67ZwtLJa3NBEJRVooHCeoIlAWbXH1bsf6QZq";
+	private static final String ACCESS_TOKEN = "8AcMbJiKViAAAAAAAAAAHP2ZlQkD9e5Wgsiv1rBVoM7anm9RbEXR-Do0W8YI9V5E";
 	
 	private UserDatabase users;
 	private ExtensionList extensions;

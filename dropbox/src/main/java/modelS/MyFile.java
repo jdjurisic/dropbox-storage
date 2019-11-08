@@ -27,11 +27,12 @@ import exceptions.file.SelectFileExeption;
 import exceptions.file.UploadFileExeption;
 import exceptions.file.ZipFilesExeption;
 import formatComponent.ExtensionList;
+import model.MetaCreator;
 
 
 
 public class MyFile implements model.MyFile {
-	private static final String ACCESS_TOKEN = "8AcMbJiKViAAAAAAAAAADUXBL3xJ67ZwtLJa3NBEJRVooHCeoIlAWbXH1bsf6QZq";
+	private static final String ACCESS_TOKEN = "8AcMbJiKViAAAAAAAAAAHP2ZlQkD9e5Wgsiv1rBVoM7anm9RbEXR-Do0W8YI9V5E";
 	/**
 	 * A grouping of a few configuration parameters for how we should make requests to the Dropbox servers.
 	 */
@@ -167,7 +168,38 @@ public class MyFile implements model.MyFile {
 
 	@Override
 	public void createWithMetadata(String name, String path, ExtensionList extensiontList) throws CreateFileException {
-		// TODO Auto-generated method stub
+		
+		File f = new File(name);
+		try {
+			f.createNewFile();
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
+		
+		try {
+			this.upload(name, path+"/"+name, null);
+		} catch (UploadFileExeption e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		MetaCreator.createNewMetaDescription(name);
+		
+	System.out.println("bezEkstenzije :"+ name);
+	name = name.substring(0, name.lastIndexOf("."));
+	name += "-META.json";
+		
+		
+		
+		try {
+			this.upload(name, path+"/"+name, null);
+		} catch (UploadFileExeption e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 
