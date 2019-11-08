@@ -1,9 +1,9 @@
-package dropbox;
+package storage;
 
 import model.MetaCreator;
 import model.MyPath;
-import modelDropbox.MyDirectory;
-import modelDropbox.MyFile;
+import modelS.MyDirectory;
+import modelS.MyFile;
 import usersComponent.User;
 import usersComponent.UserDatabase;
 

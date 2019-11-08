@@ -1,4 +1,4 @@
-package dropbox;
+package storage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +15,12 @@ import exceptions.directory.CreateDirectoryExceptions;
 import exceptions.directory.SearchDirectoryExceptions;
 import exceptions.file.DownloadFileExeption;
 import exceptions.file.UploadFileExeption;
-import dropbox.ExtensionHandler;
 import formatComponent.ExtensionList;
 
 import model.MyPath;
-import modelDropbox.MyDirectory;
-import modelDropbox.MyFile;
+import modelS.MyDirectory;
+import modelS.MyFile;
+import storage.ExtensionHandler;
 import usersComponent.User;
 import usersComponent.UserDatabase;
 
