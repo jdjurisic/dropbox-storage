@@ -100,11 +100,7 @@ public class MyFile implements model.MyFile {
 		}
 	}
 
-	@Override
-	public void selectMutlipleFile(List<String> path) throws SelectFileExeption {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 
 	@Override
@@ -157,7 +153,7 @@ public class MyFile implements model.MyFile {
 
 
 	@Override
-	public void uploadMultiple(List<model.MyFile> files, String pathStorage, ExtensionList extensiontList)
+	public void uploadMultiple(List<String> files, String pathStorage, ExtensionList extensiontList)
 			throws UploadFileExeption {
 		// TODO Auto-generated method stub
 		
@@ -165,10 +161,12 @@ public class MyFile implements model.MyFile {
 
 
 	@Override
-	public void uploadMultipleZip(List<model.MyFile> files, String destination) throws Exception {
+	public void uploadMultipleZip(List<String> files, String destination) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 
 

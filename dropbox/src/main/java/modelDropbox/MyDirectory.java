@@ -193,17 +193,7 @@ public class MyDirectory implements model.MyDirectory {
 		
 	}
 
-	@Override
-	public void uploadMultiple(List<MyFile> directories, String dest, String name) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void uploadMultipleZip(List<MyFile> directories, String dest, String name) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public List<MyFile> listAllinDirectoryInDirectory(String path) throws SearchDirectoryExceptions {
@@ -272,6 +262,12 @@ public class MyDirectory implements model.MyDirectory {
 	public List<MyFile> listAllinDirectoryWithoutMetadata(String path) throws SearchDirectoryExceptions {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void uploadMultipleZip(List<String> directories, String dest, String name) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
