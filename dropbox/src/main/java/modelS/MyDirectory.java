@@ -13,6 +13,7 @@ import com.dropbox.core.v2.files.CreateFolderErrorException;
 import com.dropbox.core.v2.files.CreateFolderResult;
 import com.dropbox.core.v2.files.DeleteErrorException;
 import com.dropbox.core.v2.files.DownloadZipResult;
+import com.dropbox.core.v2.files.FileMetadata;
 import com.dropbox.core.v2.files.FileOpsResult;
 import com.dropbox.core.v2.files.FolderMetadata;
 import com.dropbox.core.v2.files.ListFolderContinueErrorException;
@@ -235,8 +236,40 @@ public class MyDirectory implements model.MyDirectory {
 
 	@Override
 	public List<MyFile> listAllFileinDirectory(String path) throws SearchDirectoryExceptions {
-		// TODO Auto-generated method stub
-		return null;
+		// Get files and folder metadata from Dropbox root directory
+	     ListFolderResult result = null;
+		try {
+			result = client.files().listFolder(path);
+		} catch (ListFolderErrorException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (DbxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	     while (true) {
+	         for (Metadata metadata : result.getEntries()) {
+	       	  if(metadata instanceof FileMetadata) {
+	                 System.out.println(metadata.getPathLower());
+	                 
+	             }
+	         }
+
+	         if (!result.getHasMore()) {
+	             break;
+	         }
+	        
+	         try {
+				result = client.files().listFolderContinue(result.getCursor());
+			} catch (ListFolderContinueErrorException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (DbxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	     }
+			return null;
 	}
 
 	@Override
@@ -246,9 +279,9 @@ public class MyDirectory implements model.MyDirectory {
 	}
 
 	@Override
-	public List<MyFile> listAllinDirectoryWithExtension(String path, String extension)
-			throws SearchDirectoryExceptions {
-		// TODO Auto-generated method stub
+	public List<MyFile> listAllinDirectoryWithExtension(String path, String extension){
+			
+	//System.out.print(privremeniPath);
 		return null;
 	}
 

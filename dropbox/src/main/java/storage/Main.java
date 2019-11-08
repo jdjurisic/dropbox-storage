@@ -88,12 +88,13 @@ public class Main {
         model.MyFile myfile= new MyFile();
         model.MyDirectory myDirectory = new MyDirectory();
         
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Unesi ime file ");
-        String name =scanner.nextLine();
-        System.out.println("Unesi dest file ");
-        String dest =scanner.nextLine();
-        myfile.upload(name, dest, extensionList);
+        // test uploada
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Unesi ime file ");
+//        String name =scanner.nextLine();
+//        System.out.println("Unesi dest file ");
+//        String dest =scanner.nextLine();
+//        myfile.upload(name, dest, extensionList);
         
                 
         

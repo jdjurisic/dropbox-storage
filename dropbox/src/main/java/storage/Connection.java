@@ -13,6 +13,7 @@ import com.dropbox.core.v2.files.Metadata;
 
 import exceptions.directory.CreateDirectoryExceptions;
 import exceptions.directory.SearchDirectoryExceptions;
+import exceptions.file.DeleteFileExeption;
 import exceptions.file.DownloadFileExeption;
 import exceptions.file.UploadFileExeption;
 import formatComponent.ExtensionList;
@@ -270,6 +271,26 @@ public class Connection implements connectionComponent.Connection {
 
 	@Override
 	public void disconnectFromStorage() {
+		HandleUsers handleChanges = new HandleUsers();
+		handleChanges.saveUsers("", getUsers());
+		
+		ExtensionHandler handleExtChanges = new ExtensionHandler();
+		handleExtChanges.saveExtensions("", getExtension());
+		
+		try {
+			dropboxFile.delete(currentPath.getPath()+"/users.json");
+		} catch (DeleteFileExeption e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			dropboxFile.delete(currentPath.getPath()+"/extensions.json");
+		} catch (DeleteFileExeption e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		try {
 			dropboxFile.upload("users.json",getMyPath().getPath()+"/users.json",null);
 		} catch (UploadFileExeption e) {
@@ -277,7 +298,7 @@ public class Connection implements connectionComponent.Connection {
 			e.printStackTrace();
 		}
 		try {
-			dropboxFile.upload("users.json",getMyPath().getPath()+"/users.json",null);
+			dropboxFile.upload("extensions.json",getMyPath().getPath()+"/extensions.json",null);
 		} catch (UploadFileExeption e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
