@@ -52,7 +52,6 @@ public class MyFile implements model.MyFile {
 
 	/**
 	 * Dropbox file constructor
-	 * @param client contains access token
 	 */
 	public MyFile() {
 		initClient("remote-storage-software-component");

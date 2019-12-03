@@ -52,8 +52,6 @@ public class MyDirectory implements model.MyDirectory {
 
 	/**
 	 * Dropbox directory constructor.
-	 *
-	 * @param accessToken sets access token read from config file.
 	 */
 	public MyDirectory() {
 		initClient("remote-storage-software-component");
